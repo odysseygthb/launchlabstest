@@ -1,4 +1,7 @@
-import type { Athlete, AthleteStatus } from '../types';
+import type { Athlete } from '../types';
+import { TableRow } from './atoms/TableRow';
+import { TableHeaderCell } from './atoms/TableHeaderCell';
+import { PaginationButton } from './atoms/PaginationButton';
 
 interface TableProps {
     athletes: Athlete[];
@@ -8,12 +11,31 @@ interface TableProps {
     onNextPage: () => void;
 }
 
-const STATUS_CLASS: Record<AthleteStatus, string> = {
-    Active: 'badge badge--active',
-    Injured: 'badge badge--injured',
-    Suspended: 'badge badge--suspended',
-    Retired: 'badge badge--retired',
-};
+const COLUMNS: { key: keyof Athlete; label: string }[] = [
+    { key: 'athleteCode',   label: 'Code' },
+    { key: 'firstName',     label: 'First Name' },
+    { key: 'lastName',      label: 'Last Name' },
+    { key: 'gender',        label: 'Gender' },
+    { key: 'age',           label: 'Age' },
+    { key: 'dateOfBirth',   label: 'Date of Birth' },
+    { key: 'country',       label: 'Country' },
+    { key: 'sport',         label: 'Sport' },
+    { key: 'position',      label: 'Position' },
+    { key: 'team',          label: 'Team' },
+    { key: 'ranking',       label: 'Ranking' },
+    { key: 'medals',        label: 'Medals' },
+    { key: 'matchesPlayed', label: 'Matches' },
+    { key: 'wins',          label: 'Wins' },
+    { key: 'losses',        label: 'Losses' },
+    { key: 'winRate',       label: 'Win Rate' },
+    { key: 'heightCm',      label: 'Height (cm)' },
+    { key: 'weightKg',      label: 'Weight (kg)' },
+    { key: 'yearsPro',      label: 'Years Pro' },
+    { key: 'salaryUsd',     label: 'Salary (USD)' },
+    { key: 'isOlympian',    label: 'Olympian' },
+    { key: 'status',        label: 'Status' },
+    { key: 'lastUpdated',   label: 'Last Updated' },
+];
 
 export function Table({ athletes, page, pageSize, onPrevPage, onNextPage }: TableProps) {
     return (
@@ -22,53 +44,23 @@ export function Table({ athletes, page, pageSize, onPrevPage, onNextPage }: Tabl
                 <table className="athletes-table">
                     <thead>
                         <tr>
-                            <th>Code</th>
-                            <th>Name</th>
-                            <th>Gender</th>
-                            <th>Age</th>
-                            <th>Country</th>
-                            <th>Sport</th>
-                            <th>Team</th>
-                            <th>Position</th>
-                            <th>Ranking</th>
-                            <th>Medals</th>
-                            <th>Win Rate</th>
-                            <th>Status</th>
+                            {COLUMNS.map(col => (
+                                <TableHeaderCell key={col.key} label={col.label} />
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
                         {athletes.map(athlete => (
-                            <tr key={athlete.id}>
-                                <td className="mono">{athlete.athleteCode}</td>
-                                <td>{athlete.firstName} {athlete.lastName}</td>
-                                <td>{athlete.gender}</td>
-                                <td>{athlete.age}</td>
-                                <td>{athlete.country}</td>
-                                <td>{athlete.sport}</td>
-                                <td>{athlete.team}</td>
-                                <td>{athlete.position}</td>
-                                <td className="text-center">{athlete.ranking}</td>
-                                <td className="text-center">{athlete.medals}</td>
-                                <td className="text-center">{(athlete.winRate * 100).toFixed(1)}%</td>
-                                <td>
-                                    <span className={STATUS_CLASS[athlete.status]}>
-                                        {athlete.status}
-                                    </span>
-                                </td>
-                            </tr>
+                            <TableRow key={athlete.id} athlete={athlete} columns={COLUMNS} />
                         ))}
                     </tbody>
                 </table>
             </div>
 
             <div className="pagination">
-                <button onClick={onPrevPage} disabled={page === 0}>
-                    ← Prev
-                </button>
+                <PaginationButton label="← Prev" onClick={onPrevPage} disabled={page === 0} />
                 <span>Page {page + 1}</span>
-                <button onClick={onNextPage} disabled={athletes.length < pageSize}>
-                    Next →
-                </button>
+                <PaginationButton label="Next →" onClick={onNextPage} disabled={athletes.length < pageSize} />
             </div>
         </>
     );

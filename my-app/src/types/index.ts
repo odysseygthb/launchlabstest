@@ -24,3 +24,9 @@ export interface Athlete {
     status: string;
     lastUpdated: string; // ISO-8601 datetime
 }
+
+export interface QueryOptions {
+    filters?: Partial<Pick<Athlete, 'sport' | 'country' | 'status' | 'gender'>>;
+    page?: number;
+    pageSize?: number;
+}

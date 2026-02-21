@@ -1,12 +1,5 @@
-import type {AthleteStatus, Column} from "../types";
-import {AthleteColumn, AthleteColumnLabel} from "../types/enums.ts";
-
-export const STATUS_CLASS: Record<AthleteStatus, string> = {
-    Active: 'badge badge--active',
-    Injured: 'badge badge--injured',
-    Suspended: 'badge badge--suspended',
-    Retired: 'badge badge--retired',
-};
+import type { Column } from "../types";
+import { AthleteColumn, AthleteColumnLabel } from "../types/enums.ts";
 
 export const TABLE_COLUMNS: Column[] = [
     { key: AthleteColumn.athleteCode,   label: AthleteColumnLabel.athleteCode },

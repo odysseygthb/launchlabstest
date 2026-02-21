@@ -1,3 +1,5 @@
+import styles from './PaginationButton.module.css';
+
 interface Props {
     label: string;
     onClick: () => void;
@@ -6,7 +8,7 @@ interface Props {
 
 export function PaginationButton({ label, onClick, disabled }: Props) {
     return (
-        <button onClick={onClick} disabled={disabled}>
+        <button className={styles.button} onClick={onClick} disabled={disabled}>
             {label}
         </button>
     );

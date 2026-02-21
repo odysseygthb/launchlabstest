@@ -1,4 +1,5 @@
 import { PaginationButton } from '../atoms/PaginationButton.tsx';
+import styles from './Pagination.module.css';
 
 interface Props {
     page: number;
@@ -9,9 +10,9 @@ interface Props {
 
 export function Pagination({ page, hasNextPage, onPrevPage, onNextPage }: Props) {
     return (
-        <div className="pagination">
+        <div className={styles.pagination}>
             <PaginationButton label="← Prev" onClick={onPrevPage} disabled={page === 0} />
-            <span>Page {page + 1}</span>
+            <span className={styles.page}>Page {page + 1}</span>
             <PaginationButton label="Next →" onClick={onNextPage} disabled={!hasNextPage} />
         </div>
     );

@@ -1,5 +1,13 @@
+import { AthleteColumn } from './enums';
+import { AthleteColumnLabel } from './enums';
+
 export type AthleteStatus = 'Active' | 'Injured' | 'Suspended' | 'Retired';
 export type AthleteGender = 'Male' | 'Female';
+
+export interface Column {
+    key: AthleteColumn;
+    label: AthleteColumnLabel;
+}
 
 export interface Athlete {
     id: number;

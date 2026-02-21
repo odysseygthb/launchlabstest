@@ -3,14 +3,13 @@ import { TableRow } from '../atoms/TableRow.tsx';
 
 interface Props {
     athletes: Athlete[];
-    columns: { key: keyof Athlete; label: string }[];
 }
 
-export function TableBody({ athletes, columns }: Props) {
+export function TableBody({ athletes }: Props) {
     return (
         <tbody>
             {athletes.map(athlete => (
-                <TableRow key={athlete.id} athlete={athlete} columns={columns} />
+                <TableRow key={athlete.id} athlete={athlete} />
             ))}
         </tbody>
     );

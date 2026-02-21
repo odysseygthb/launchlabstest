@@ -1,15 +1,11 @@
-import type { Athlete } from '../../../types';
 import { TableHeaderCell } from '../atoms/TableHeaderCell.tsx';
+import { TABLE_COLUMNS } from '../../../constants';
 
-interface Props {
-    columns: { key: keyof Athlete; label: string }[];
-}
-
-export function TableHeader({ columns }: Props) {
+export function TableHeader() {
     return (
         <thead>
             <tr>
-                {columns.map(col => (
+                {TABLE_COLUMNS.map(col => (
                     <TableHeaderCell key={col.key} label={col.label} />
                 ))}
             </tr>

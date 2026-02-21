@@ -1,46 +1,40 @@
-import type { Athlete, AthleteStatus } from '../../../types';
+import type { Athlete, } from '../../../types';
+import { AthleteColumn } from '../../../types/enums';
+import { STATUS_CLASS, TABLE_COLUMNS } from "../../../constants";
 
 interface Props {
     athlete: Athlete;
-    columns: { key: keyof Athlete; label: string }[];
 }
 
-const STATUS_CLASS: Record<AthleteStatus, string> = {
-    Active: 'badge badge--active',
-    Injured: 'badge badge--injured',
-    Suspended: 'badge badge--suspended',
-    Retired: 'badge badge--retired',
-};
-
-function renderCell(athlete: Athlete, fieldKey: keyof Athlete) {
+function renderCell(athlete: Athlete, fieldKey: AthleteColumn) {
     switch (fieldKey) {
-        case 'athleteCode':
+        case AthleteColumn.athleteCode:
             return <td key={fieldKey} className="mono">{athlete.athleteCode}</td>;
-        case 'winRate':
+        case AthleteColumn.winRate:
             return <td key={fieldKey} className="text-center">{(athlete.winRate * 100).toFixed(1)}%</td>;
-        case 'status':
+        case AthleteColumn.status:
             return (
                 <td key={fieldKey}>
                     <span className={STATUS_CLASS[athlete.status]}>{athlete.status}</span>
                 </td>
             );
-        case 'isOlympian':
+        case AthleteColumn.isOlympian:
             return <td key={fieldKey} className="text-center">{athlete.isOlympian ? 'Yes' : 'No'}</td>;
-        case 'ranking':
-        case 'medals':
-        case 'matchesPlayed':
-        case 'wins':
-        case 'losses':
+        case AthleteColumn.ranking:
+        case AthleteColumn.medals:
+        case AthleteColumn.matchesPlayed:
+        case AthleteColumn.wins:
+        case AthleteColumn.losses:
             return <td key={fieldKey} className="text-center">{athlete[fieldKey]}</td>;
         default:
-            return <td key={fieldKey}>{String(athlete[fieldKey])}</td>;
+            return <td key={fieldKey}>{String(athlete[fieldKey as keyof Athlete])}</td>;
     }
 }
 
-export function TableRow({ athlete, columns }: Props) {
+export function TableRow({ athlete }: Props) {
     return (
         <tr>
-            {columns.map(col => renderCell(athlete, col.key))}
+            { TABLE_COLUMNS.map(col => renderCell(athlete, col.key)) }
         </tr>
     );
 }

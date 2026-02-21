@@ -1,4 +1,4 @@
-import type { Athlete, AthleteStatus } from '../../types';
+import type { Athlete, AthleteStatus } from '../../../types';
 
 interface Props {
     athlete: Athlete;

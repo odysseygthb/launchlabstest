@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useAthletes } from '../hooks/useAtheletes';
-import { Table } from './Table';
+import { useAthletes } from '../../../hooks/useAtheletes.ts';
+import { Table } from '../organisms/Table.tsx';
 
 const PAGE_SIZE = 25;
 

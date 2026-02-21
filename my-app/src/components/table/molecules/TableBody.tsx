@@ -1,5 +1,5 @@
-import type { Athlete } from '../../types';
-import { TableRow } from '../atoms/TableRow';
+import type { Athlete } from '../../../types';
+import { TableRow } from '../atoms/TableRow.tsx';
 
 interface Props {
     athletes: Athlete[];

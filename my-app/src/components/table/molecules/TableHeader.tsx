@@ -1,5 +1,5 @@
-import type { Athlete } from '../../types';
-import { TableHeaderCell } from '../atoms/TableHeaderCell';
+import type { Athlete } from '../../../types';
+import { TableHeaderCell } from '../atoms/TableHeaderCell.tsx';
 
 interface Props {
     columns: { key: keyof Athlete; label: string }[];

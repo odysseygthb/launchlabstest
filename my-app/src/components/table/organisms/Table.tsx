@@ -1,7 +1,7 @@
-import type { Athlete } from '../types';
-import { TableHeader } from './molecules/TableHeader';
-import { TableBody } from './molecules/TableBody';
-import { Pagination } from './molecules/Pagination';
+import type { Athlete } from '../../../types';
+import { TableHeader } from '../molecules/TableHeader.tsx';
+import { TableBody } from '../molecules/TableBody.tsx';
+import { Pagination } from '../molecules/Pagination.tsx';
 
 interface TableProps {
     athletes: Athlete[];

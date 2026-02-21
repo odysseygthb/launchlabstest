@@ -1,5 +1,5 @@
 import './App.css'
-import { TableWrapper } from './components/TableWrapper';
+import { TableWrapper } from './components/table/wrappers/TableWrapper.tsx';
 
 function App() {
     return (

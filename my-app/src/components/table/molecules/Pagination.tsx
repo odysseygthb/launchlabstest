@@ -1,4 +1,4 @@
-import { PaginationButton } from '../atoms/PaginationButton';
+import { PaginationButton } from '../atoms/PaginationButton.tsx';
 
 interface Props {
     page: number;

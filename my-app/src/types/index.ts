@@ -1,9 +1,12 @@
+export type AthleteStatus = 'Active' | 'Injured' | 'Suspended' | 'Retired';
+export type AthleteGender = 'Male' | 'Female';
+
 export interface Athlete {
     id: number;
     athleteCode: string;
     firstName: string;
     lastName: string;
-    gender: string;
+    gender: AthleteGender;
     age: number;
     dateOfBirth: string; // YYYY-MM-DD
     country: string;
@@ -21,12 +24,19 @@ export interface Athlete {
     yearsPro: number;
     salaryUsd: number;
     isOlympian: boolean;
-    status: string;
+    status: AthleteStatus;
     lastUpdated: string; // ISO-8601 datetime
 }
 
+export interface AthleteFilters {
+    sport?: string;
+    country?: string;
+    status?: AthleteStatus;
+    gender?: AthleteGender;
+}
+
 export interface QueryOptions {
-    filters?: Partial<Pick<Athlete, 'sport' | 'country' | 'status' | 'gender'>>;
+    filters?: AthleteFilters;
     page?: number;
     pageSize?: number;
 }

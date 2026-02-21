@@ -1,7 +1,7 @@
 import type { Athlete } from '../types';
-import { TableRow } from './atoms/TableRow';
-import { TableHeaderCell } from './atoms/TableHeaderCell';
-import { PaginationButton } from './atoms/PaginationButton';
+import { TableHeader } from './molecules/TableHeader';
+import { TableBody } from './molecules/TableBody';
+import { Pagination } from './molecules/Pagination';
 
 interface TableProps {
     athletes: Athlete[];
@@ -42,26 +42,17 @@ export function Table({ athletes, page, pageSize, onPrevPage, onNextPage }: Tabl
         <>
             <div className="table-wrapper">
                 <table className="athletes-table">
-                    <thead>
-                        <tr>
-                            {COLUMNS.map(col => (
-                                <TableHeaderCell key={col.key} label={col.label} />
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {athletes.map(athlete => (
-                            <TableRow key={athlete.id} athlete={athlete} columns={COLUMNS} />
-                        ))}
-                    </tbody>
+                    <TableHeader columns={COLUMNS} />
+                    <TableBody athletes={athletes} columns={COLUMNS} />
                 </table>
             </div>
 
-            <div className="pagination">
-                <PaginationButton label="← Prev" onClick={onPrevPage} disabled={page === 0} />
-                <span>Page {page + 1}</span>
-                <PaginationButton label="Next →" onClick={onNextPage} disabled={athletes.length < pageSize} />
-            </div>
+            <Pagination
+                page={page}
+                hasNextPage={athletes.length === pageSize}
+                onPrevPage={onPrevPage}
+                onNextPage={onNextPage}
+            />
         </>
     );
 }

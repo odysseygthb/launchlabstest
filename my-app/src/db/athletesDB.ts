@@ -9,7 +9,23 @@ const athleteFullNames = new Map(
     athletes.map(a => [a.id, `${a.firstName} ${a.lastName}`.toLowerCase()])
 );
 
-function filterByOptions(filters: AthleteFilters = {}): Athlete[] {
+function filterById(id: number, filters: AthleteFilters): Athlete[] {
+    const athlete = athletesById.get(id);
+    if (!athlete) return [];
+
+    const { name, sport, country, status, gender } = filters;
+    const nameLower = name?.toLowerCase();
+    const matches =
+        (!nameLower || athleteFullNames.get(athlete.id)!.includes(nameLower)) &&
+        (!sport   || athlete.sport   === sport)   &&
+        (!country || athlete.country === country) &&
+        (!status  || athlete.status  === status)  &&
+        (!gender  || athlete.gender  === gender);
+
+    return matches ? [athlete] : [];
+}
+
+function filterByFields(filters: AthleteFilters): Athlete[] {
     const { name, sport, country, status, gender } = filters;
     const nameLower = name?.toLowerCase();
     return athletes.filter(a =>
@@ -21,10 +37,14 @@ function filterByOptions(filters: AthleteFilters = {}): Athlete[] {
     );
 }
 
+function filterByOptions(filters: AthleteFilters = {}): Athlete[] {
+    return filters?.id
+        ? filterById(filters.id, filters)
+        : filterByFields(filters);
+}
+
 export const db = {
     findAll:         () => athletes,
-    findById:        (id: number) => athletesById.get(id),
-    filter:          (predicate: (a: Athlete) => boolean) => athletes.filter(predicate),
     filterByOptions,
     paginate:        (page: number, size: number) => athletes.slice(page * size, (page + 1) * size),
 };

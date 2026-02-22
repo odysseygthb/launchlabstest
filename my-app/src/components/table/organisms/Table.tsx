@@ -7,12 +7,14 @@ import styles from './Table.module.css';
 interface TableProps {
     athletes: Athlete[];
     page: number;
+    totalCount: number;
     pageSize: number;
     onPrevPage: () => void;
     onNextPage: () => void;
 }
 
-export function Table({ athletes, page, pageSize, onPrevPage, onNextPage }: TableProps) {
+export function Table({ athletes, page, totalCount, pageSize, onPrevPage, onNextPage }: TableProps) {
+    const totalPages = Math.ceil(totalCount / pageSize);
     return (
         <>
             <div className={styles.wrapper}>
@@ -24,7 +26,8 @@ export function Table({ athletes, page, pageSize, onPrevPage, onNextPage }: Tabl
 
             <Pagination
                 page={page}
-                hasNextPage={athletes.length === pageSize}
+                totalPages={totalPages}
+                totalCount={totalCount}
                 onPrevPage={onPrevPage}
                 onNextPage={onNextPage}
             />

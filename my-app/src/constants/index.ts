@@ -34,4 +34,4 @@ export const FILTER_CONFIGS: FilterConfig[] = [
     { key: FilterKeys.GENDER,  label: FilterLabel.GENDER,  placeholder: FilterPlaceholder.GENDER,  optionsKey: FilterOptionsKey.GENDER },
 ];
 
-export const PAGE_SIZE = 25;
+export const PAGE_SIZE = 10;

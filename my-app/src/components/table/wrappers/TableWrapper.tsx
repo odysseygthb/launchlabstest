@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAthletes } from '../../../hooks/useAtheletes';
+import { useAthletes, useAthletesCount } from '../../../hooks/useAtheletes';
 import { Table } from '../organisms/Table';
 import { FilterByIdWrapper } from './FilterByIdWrapper';
 import { FilterByNameWrapper } from './FilterByNameWrapper';
@@ -23,6 +23,7 @@ export function TableWrapper() {
         gender:  optionFilters.gender,
     };
 
+    const { data: totalCount = 0 } = useAthletesCount(filters);
     const { data = [] } = useAthletes({ filters, page, pageSize: PAGE_SIZE });
 
     function handleIdChange(id: number | undefined) {
@@ -51,6 +52,7 @@ export function TableWrapper() {
             <Table
                 athletes={data}
                 page={page}
+                totalCount={totalCount}
                 pageSize={PAGE_SIZE}
                 onPrevPage={() => setPage(p => Math.max(0, p - 1))}
                 onNextPage={() => setPage(p => p + 1)}

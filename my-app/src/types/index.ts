@@ -1,8 +1,6 @@
-import { AthleteColumn, FilterKeys, FilterLabel, FilterPlaceholder, FilterOptionsKey } from './enums';
+import { AthleteColumn, AthleteStatus, AthleteGender, FilterKeys, FilterLabel, FilterPlaceholder, FilterOptionsKey } from './enums';
 import { AthleteColumnLabel } from './enums';
-
-export type AthleteStatus = 'Active' | 'Injured' | 'Suspended' | 'Retired';
-export type AthleteGender = 'Male' | 'Female';
+export { AthleteStatus, AthleteGender };
 
 export interface Column {
     key: AthleteColumn;

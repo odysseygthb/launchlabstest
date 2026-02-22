@@ -45,6 +45,5 @@ function filterByOptions(filters: AthleteFilters = {}): Athlete[] {
 
 export const db = {
     findAll:         () => athletes,
-    filterByOptions,
-    paginate:        (page: number, size: number) => athletes.slice(page * size, (page + 1) * size),
+    filterByOptions
 };

@@ -79,3 +79,15 @@ export enum FilterOptionsKey {
     STATUS  = 'statuses',
     GENDER  = 'genders',
 }
+
+export enum AthleteStatus {
+    Active    = 'Active',
+    Injured   = 'Injured',
+    Suspended = 'Suspended',
+    Retired   = 'Retired',
+}
+
+export enum AthleteGender {
+    Male   = 'Male',
+    Female = 'Female',
+}

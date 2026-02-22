@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { db } from '../db/athletesDB';
 import type { DropdownOption } from '../components/table/atoms/Dropdown';
+import { STATUS_OPTIONS, GENDER_OPTIONS } from '../constants';
 
 const ALL_OPTION: DropdownOption = { value: '', label: 'All' };
 
@@ -16,23 +17,11 @@ export function useFilterOptions() {
             .sort()
             .map(c => ({ value: c, label: c }));
 
-        const statuses: DropdownOption[] = [
-            { value: 'Active',    label: 'Active' },
-            { value: 'Injured',   label: 'Injured' },
-            { value: 'Suspended', label: 'Suspended' },
-            { value: 'Retired',   label: 'Retired' },
-        ];
-
-        const genders: DropdownOption[] = [
-            { value: 'Male',   label: 'Male' },
-            { value: 'Female', label: 'Female' },
-        ];
-
         return {
             sports:    [ALL_OPTION, ...sports],
             countries: [ALL_OPTION, ...countries],
-            statuses:  [ALL_OPTION, ...statuses],
-            genders:   [ALL_OPTION, ...genders],
+            statuses:  [ALL_OPTION, ...STATUS_OPTIONS],
+            genders:   [ALL_OPTION, ...GENDER_OPTIONS],
         };
     }, []);
 }

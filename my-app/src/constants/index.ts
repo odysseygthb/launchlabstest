@@ -33,3 +33,5 @@ export const FILTER_CONFIGS: FilterConfig[] = [
     { key: FilterKeys.STATUS,  label: FilterLabel.STATUS,  placeholder: FilterPlaceholder.STATUS,  optionsKey: FilterOptionsKey.STATUS },
     { key: FilterKeys.GENDER,  label: FilterLabel.GENDER,  placeholder: FilterPlaceholder.GENDER,  optionsKey: FilterOptionsKey.GENDER },
 ];
+
+export const PAGE_SIZE = 25;

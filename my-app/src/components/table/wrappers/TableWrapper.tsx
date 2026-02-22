@@ -6,8 +6,7 @@ import { FilterByNameWrapper } from './FilterByNameWrapper';
 import { FilterByOptionsWrapper } from './FilterByOptionsWrapper';
 import type { AthleteFilters } from '../../../types';
 import styles from './TableWrapper.module.css';
-
-const PAGE_SIZE = 25;
+import { PAGE_SIZE } from "../../../constants";
 
 export function TableWrapper() {
     const [page, setPage] = useState(0);

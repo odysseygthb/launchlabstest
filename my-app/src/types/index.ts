@@ -37,6 +37,8 @@ export interface Athlete {
 }
 
 export interface AthleteFilters {
+    id?: number;
+    name?: string;
     sport?: string;
     country?: string;
     status?: AthleteStatus;

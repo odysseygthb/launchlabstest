@@ -9,32 +9,26 @@ const athleteFullNames = new Map(
     athletes.map(a => [a.id, `${a.firstName} ${a.lastName}`.toLowerCase()])
 );
 
-function filterById(id: number, filters: AthleteFilters): Athlete[] {
-    const athlete = athletesById.get(id);
-    if (!athlete) return [];
-
+function matchesFilters(a: Athlete, filters: AthleteFilters): boolean {
     const { name, sport, country, status, gender } = filters;
     const nameLower = name?.toLowerCase();
-    const matches =
-        (!nameLower || athleteFullNames.get(athlete.id)!.includes(nameLower)) &&
-        (!sport   || athlete.sport   === sport)   &&
-        (!country || athlete.country === country) &&
-        (!status  || athlete.status  === status)  &&
-        (!gender  || athlete.gender  === gender);
-
-    return matches ? [athlete] : [];
-}
-
-function filterByFields(filters: AthleteFilters): Athlete[] {
-    const { name, sport, country, status, gender } = filters;
-    const nameLower = name?.toLowerCase();
-    return athletes.filter(a =>
+    return (
         (!nameLower || athleteFullNames.get(a.id)!.includes(nameLower)) &&
         (!sport   || a.sport   === sport)   &&
         (!country || a.country === country) &&
         (!status  || a.status  === status)  &&
-        (!gender  || a.gender  === gender),
+        (!gender  || a.gender  === gender)
     );
+}
+
+function filterById(id: number, filters: AthleteFilters): Athlete[] {
+    const athlete = athletesById.get(id);
+    if (!athlete) return [];
+    return matchesFilters(athlete, filters) ? [athlete] : [];
+}
+
+function filterByFields(filters: AthleteFilters): Athlete[] {
+    return athletes.filter(a => matchesFilters(a, filters));
 }
 
 function filterByOptions(filters: AthleteFilters = {}): Athlete[] {
@@ -44,6 +38,6 @@ function filterByOptions(filters: AthleteFilters = {}): Athlete[] {
 }
 
 export const db = {
-    findAll:         () => athletes,
+    findAll: () => athletes,
     filterByOptions
 };

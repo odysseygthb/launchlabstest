@@ -51,3 +51,31 @@ export enum AthleteColumnLabel {
     status        = 'Status',
     lastUpdated   = 'Last Updated',
 }
+
+export enum FilterKeys {
+    SPORT   = 'sport',
+    COUNTRY = 'country',
+    STATUS  = 'status',
+    GENDER  = 'gender',
+}
+
+export enum FilterLabel {
+    SPORT   = 'Sport',
+    COUNTRY = 'Country',
+    STATUS  = 'Status',
+    GENDER  = 'Gender',
+}
+
+export enum FilterPlaceholder {
+    SPORT   = 'All sports',
+    COUNTRY = 'All countries',
+    STATUS  = 'All statuses',
+    GENDER  = 'All genders',
+}
+
+export enum FilterOptionsKey {
+    SPORT   = 'sports',
+    COUNTRY = 'countries',
+    STATUS  = 'statuses',
+    GENDER  = 'genders',
+}

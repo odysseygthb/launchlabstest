@@ -1,4 +1,4 @@
-import { AthleteColumn } from './enums';
+import { AthleteColumn, FilterKeys, FilterLabel, FilterPlaceholder, FilterOptionsKey } from './enums';
 import { AthleteColumnLabel } from './enums';
 
 export type AthleteStatus = 'Active' | 'Injured' | 'Suspended' | 'Retired';
@@ -49,4 +49,11 @@ export interface QueryOptions {
     filters?: AthleteFilters;
     page?: number;
     pageSize?: number;
+}
+
+export interface FilterConfig {
+    key: FilterKeys;
+    label: FilterLabel;
+    placeholder: FilterPlaceholder;
+    optionsKey: FilterOptionsKey;
 }

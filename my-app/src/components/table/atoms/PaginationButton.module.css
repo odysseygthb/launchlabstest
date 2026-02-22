@@ -1,0 +1,20 @@
+.button {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 150ms, border-color 150ms;
+}
+
+.button:hover:not(:disabled) {
+    background: var(--color-surface-hover);
+    border-color: var(--color-accent);
+}
+
+.button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

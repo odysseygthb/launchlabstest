@@ -1,25 +1,14 @@
-import { useState } from 'react'
-import './App.css'
-import {useAthletes} from "./hooks/useAtheletes.ts";
+import styles from './App.module.css';
+import { PageHeader } from './components/common/atoms/PageHeader.tsx';
+import { TableWrapper } from './components/table/wrappers/TableWrapper.tsx';
 
 function App() {
-
-    const [page] = useState(0);
-    const [sport] = useState('');
-
-    const { data } = useAthletes({
-        filters: { sport: sport || undefined },
-        page,
-        pageSize: 25,
-    });
-
-    console.log(data)
-
-  return (
-    <>
-
-    </>
-  )
+    return (
+        <div className={styles.app}>
+            <PageHeader title="Test by Bohdan Prystupko" />
+            <TableWrapper />
+        </div>
+    );
 }
 
 export default App

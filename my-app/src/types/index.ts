@@ -1,5 +1,11 @@
-export type AthleteStatus = 'Active' | 'Injured' | 'Suspended' | 'Retired';
-export type AthleteGender = 'Male' | 'Female';
+import { AthleteColumn, AthleteStatus, AthleteGender, FilterKeys, FilterLabel, FilterPlaceholder, FilterOptionsKey } from './enums';
+import { AthleteColumnLabel } from './enums';
+export { AthleteStatus, AthleteGender };
+
+export interface Column {
+    key: AthleteColumn;
+    label: AthleteColumnLabel;
+}
 
 export interface Athlete {
     id: number;
@@ -29,6 +35,8 @@ export interface Athlete {
 }
 
 export interface AthleteFilters {
+    id?: number;
+    name?: string;
     sport?: string;
     country?: string;
     status?: AthleteStatus;
@@ -39,4 +47,11 @@ export interface QueryOptions {
     filters?: AthleteFilters;
     page?: number;
     pageSize?: number;
+}
+
+export interface FilterConfig {
+    key: FilterKeys;
+    label: FilterLabel;
+    placeholder: FilterPlaceholder;
+    optionsKey: FilterOptionsKey;
 }
